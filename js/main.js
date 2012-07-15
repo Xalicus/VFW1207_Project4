@@ -1,39 +1,35 @@
 /*
 Author: Kevin Ward
 Class: VFW1207
-Name: Project 3
-Date: 07-08-2012
+Name: Project 4
+Date: 07-14-2012
 */
 
-// Say function only if needed.
-var say = function(message) { console.log(message); };
-
 // My Functions
-
+//This is to wait until the DOM is fully loaded and ready.
 window.addEventListener("DOMContentLoaded", function(){
-	
-/*	// My Variables for the functions
-	var petGroup = ["--Choose A Pet Type--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"],
-		genderValue,
-		faveValue = "No",
-		errMsg = gebi("errors");
-	;*/
 
 	// My getElementById or gebi function
 	function gebi(x){
 		var theElement = document.getElementById(x);
 		return theElement;
 	};
-	
+
+	// My Variables for the functions
+	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"];
+	var	genderValue;
+	var	faveValue = "No";
+	var	errMsg = gebi("errors");
+
 	// Create select field element and populate with options.
 	function makeCats() {
 		var formTag = document.getElementsByTagName("petForm"),
 			selectLi = gebi("petsType"),
-			makeSelect = document.createElement("petType");
-			makeSelect.setAttribute("id", "petType");
-		for (var i=0, j=petGroup.length; i<j; i++) {
+			makeSelect = document.createElement("petsType");
+			makeSelect.setAttribute("id", "petGroups");
+		for (var i=0, j=petGroups.length; i<j; i++) {
 			var makeOption = document.createElement("option");
-			var optTxt = petGroup[i];
+			var optTxt = petGroups[i];
 			makeOption.setAttribute("value", optTxt);
 			makeOption.innerHTML = optTxt;
 			makeSelect.appendChild(makeOption);
@@ -111,7 +107,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Pet saved to the Kool Pets List!");
 	};
-	
+
 	// My getData function
 	function getData() {
 		toggleControls("on");
@@ -148,7 +144,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			makeItemLinks(localStorage.key(i), linksLi);
 		};
 	};
-	
+
 	// My Make Item Function
 	// Create the edit and delete links for each stored item when displayed.
 	function makeItemLinks(key, linksLi) {
@@ -160,12 +156,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linksLi.appendChild(editLink);
-		
+
 		// Add my line break
 		var breakTag = document.createElement("br");
 		linksLi.appendChild(breakTag);
-		
-		
+
+
 		// Add delete single item link
 		var deleteLink = document.createElement("a");
 		deleteLink.href = "#";
@@ -175,7 +171,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
 	};
-	
+
 	// My Edit Single Item Function
 	function editItem() {
 		// Grab data from the item local storage.
@@ -207,7 +203,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		gebi("comments").value = item.comments[1];
 		
 		// Remove the initial listener from the input "save pet" button.
-		save.removeEventListener("click", submit);
+		submit.removeEventListener("click", submit);
 		// Change Submit button Value to Edit Button
 		gebi("submit").value = "Edit Pet";
 		var editSubmit = gebi("submit");
@@ -275,8 +271,9 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 		
 		// Email Validation
-		var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		if (!(re.exec(getPetEmail.value))) {
+		var re = /^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$/;
+		var re2 = /^([a-z0-9])([\w\.\-\+])+([a-z0-9])\@((\w)([\w\-]?)+\.)+([a-z]{2,6})$/;
+		if (!(re2.exec(getPetEmail.value))) {
 			var petEmailError = "Please enter a valid email address for your pet.";
 			getPetEmail.style.border = "2px solid red";
 			messageArray.push(petEmailError);
@@ -306,14 +303,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	
 	// My Variables for the functions
-	var petGroup = ["--Choose A Pet Type--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"],
+/*	var petGroup = ["--Choose A Pet Type--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"],
 		genderValue,
 		faveValue = "No",
 		errMsg = gebi("errors");
 	;
+*/
 	
 	makeCats();
 	
+
 	var showData = gebi("showData");
 	showData.addEventListener("click", getData);
 	var clearLink = gebi("clearData");	
