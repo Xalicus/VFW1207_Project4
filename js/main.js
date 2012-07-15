@@ -112,7 +112,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData() {
 		toggleControls("on");
 		if(localStorage.length === 0) {
-			alert("There\'s no Pets in the Kool Pets List.");
+			alert("There are no Pets in the Kool Pets List so defaults pets were added.");
+			autoFillData();
 		};
 		
 		// This is supposed to write data from Local Storage back to the browser.
@@ -142,6 +143,25 @@ window.addEventListener("DOMContentLoaded", function(){
 			};
 			// Create the edit and delete buttons/link for each item in local storage.
 			makeItemLinks(localStorage.key(i), linksLi);
+		};
+	};
+
+/*	// This is to get images for the correct category.
+	function getImage(catname, makeSubList) {
+		imageLi = document.createElement("li");
+		makeSubList.appendChild(imageLi);
+		var newImg = document.createElement("img");
+		var setSrc = newImg.setAttribute("src", "img/" + catName + ".png");
+		imageLi.appendChild(newImg);
+	};*/
+
+	// My Auto Fill Local Storage Function
+	function autoFillData() {
+		// The actual JSON OBJECT data required for this to work is coming from the json.js file, which is loaded from the html page.
+		// Store the JSON OBJECT into local storage.
+		for(var n in json) {
+			var id = Math.floor(Math.random()*1000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
 		};
 	};
 
