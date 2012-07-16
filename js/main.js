@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 
 	// My Variables for the functions
-	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Reptiles", "Birds", "Farm Animals", "Mythical"];
+	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Reptiles", "Birds", "Farm_Animals", "Mythical"];
 	var	genderValue;
 	var	faveValue = "No";
 	var	errMsg = gebi("errors");
@@ -112,7 +112,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData() {
 		toggleControls("on");
 		if(localStorage.length === 0) {
-			alert("There are no Pets in the Kool Pets List so defaults pets were added.");
+			alert("There are no Pets in the Kool Pets List so default pets were added.");
 			autoFillData();
 		};
 		
@@ -134,6 +134,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var object = JSON.parse(value);
 			var makeSubList = document.createElement("ul");
 			makeLi.appendChild(makeSubList);
+			getImg(object.petGroups[1], makeSubList);
 			for (var n in object) {
 				var makeSubLi = document.createElement("li");
 				makeSubList.appendChild(makeSubLi);
@@ -146,14 +147,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 	};
 
-/*	// This is to get images for the correct category.
-	function getImage(catname, makeSubList) {
-		imageLi = document.createElement("li");
-		makeSubList.appendChild(imageLi);
+	// This is to get images for the correct category.
+	function getImg(catName, makeSubList) {
+		var imgLi = document.createElement("li");
+		makeSubList.appendChild(imgLi);
 		var newImg = document.createElement("img");
 		var setSrc = newImg.setAttribute("src", "img/" + catName + ".png");
-		imageLi.appendChild(newImg);
-	};*/
+		imgLi.appendChild(newImg);
+	};
 
 	// My Auto Fill Local Storage Function
 	function autoFillData() {
@@ -211,8 +212,6 @@ window.addEventListener("DOMContentLoaded", function(){
 				radios[i].setAttribute("checked", "checked");
 			} else if (radios[i].value == "Female" && item.genderValue[1] == "Female") {
 				radios[i].setAttribute("checked", "checked");
-			} else if (radios[i].value == "Unknown" && item.genderValue[1] == "Unknown") {
-				radios[i].setAttribute("checked", "checked");
 			};
 		};
 		if (item.favePet[1] == "Yes") {
@@ -223,7 +222,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		gebi("comments").value = item.comments[1];
 		
 		// Remove the initial listener from the input "save pet" button.
-		submit.removeEventListener("click", submit);
+		save.removeEventListener("click", submit);
 		// Change Submit button Value to Edit Button
 		gebi("submit").value = "Edit Pet";
 		var editSubmit = gebi("submit");
@@ -264,27 +263,25 @@ window.addEventListener("DOMContentLoaded", function(){
 		var getPetGroups = gebi("petGroups");
 		var getPetName = gebi("petName");
 		var getPetEmail = gebi("petEmail");
-		var getGender = gebi("genderValue");
 		
 		// Resetting Error Messages
 		errMsg.innerHTML = "";
 		getPetGroups.style.border = "1px solid black";
 		getPetName.style.border = "1px solid black";
 		getPetEmail.style.border = "1px solid black";
-		getGender.style.border = "1px solid black";
 		
 		// Get Error Messages
 		var messageArray = [];
 		
 		// Pet Type Validation
-		if (getPetGroups.value === "--Choose A Pet Type--") {
+		if (getPetGroups.value === "--Choose A Pet Group--") {
 			var petGroupsError = "Please choose a pet type.";
 			getPetGroups.style.border = "2px solid red";
 			messageArray.push(petGroupsError);
 		};
 		
 		// Pet Name Validation
-		if (getPetName === "") {
+		if (getPetName === " ") {
 			var petNameError = "Please enter a Kool Pet Name!";
 			getPetName.style.border = "2px solid red";
 			messageArray.push(petNameError);
@@ -293,18 +290,18 @@ window.addEventListener("DOMContentLoaded", function(){
 		// Email Validation
 		var re = /^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$/;
 		var re2 = /^([a-z0-9])([\w\.\-\+])+([a-z0-9])\@((\w)([\w\-]?)+\.)+([a-z]{2,6})$/;
-		if (!(re2.exec(getPetEmail.value))) {
+		if (!(re.exec(getPetEmail.value))) {
 			var petEmailError = "Please enter a valid email address for your pet.";
 			getPetEmail.style.border = "2px solid red";
 			messageArray.push(petEmailError);
 		};
 		
-		// Pet Gender Validation
-		if (getGender === "Unknown") {
+/*		// Pet Gender Validation
+		if (getGender === "") {
 			var genderError = "Please pick a Pet Gender";
 			getGender.style.border = "2px solid red";
 			messageArray.push(genderError);
-		};
+		};*/
 		
 		// If there were errors, display them on the screen.
 		if (messageArray.length >= 1) {
