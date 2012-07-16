@@ -18,5 +18,15 @@ var json = {
 		"birthDate": ["Birthdate:", "2012-01-01"],
 		"koolness": ["Koolness Factor:", "5"],
 		"comments": ["Comments:", "She's so cute!"]
+	},
+	"pet3": {
+		"petsType": ["Pet Type:", "Mythical"],
+		"petName": ["Pet Name:", "Drako"],
+		"petEmail": ["Pet Email:", "Drako@petmail.com"],
+		"gender": ["Gender:", "Unknown"],
+		"favePet": ["Favorite Pet?:", "Yes"],
+		"birthDate": ["Birthdate:", "0001-01-01"],
+		"koolness": ["Koolness Factor:", "100"],
+		"comments": ["Comments:", "No, I do not taste good with Ketchup!"]
 	}
 };
