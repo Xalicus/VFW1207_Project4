@@ -95,13 +95,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		getCheckboxValue();
 		
 		var item				= {};
-			item.petGroups		= ["Pet Type:", gebi("petGroups").value];
-			item.petName		= ["Pet Name:", gebi("petName").value];
-			item.petEmail		= ["Pet Email:", gebi("petEmail").value];
+			item.petGroups		= ["Kool Pet Type:", gebi("petGroups").value];
+			item.petName		= ["Kool Pet\'s Name:", gebi("petName").value];
+			item.petEmail		= ["Kool Pet Email:", gebi("petEmail").value];
 			item.genderValue	= ["Gender:", genderValue];
-			item.favePet		= ["Favorite Pet:", faveValue];
+			item.favePet		= ["Favorite Kool Pet:", faveValue];
 			item.birthDate		= ["Date of Birth:", gebi("birthDate").value];
-			item.koolness		= ["Koolness:", gebi("koolness").value];
+			item.koolness		= ["Koolness Factor:", gebi("koolness").value];
 			item.comments		= ["Comments:", gebi("comments").value];
 		// Save data into Local Storage: Use Stringify to convert the object to a string.
 		localStorage.setItem(id, JSON.stringify(item));
