@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 
 	// My Variables for the functions
-	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"];
+	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Reptiles", "Birds", "Farm Animals", "Dragons"];
 	var	genderValue;
 	var	faveValue = "No";
 	var	errMsg = gebi("errors");
@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	function makeCats() {
 		var formTag = document.getElementsByTagName("petForm"),
 			selectLi = gebi("petsType"),
-			makeSelect = document.createElement("petsType");
+			makeSelect = document.createElement("select");
 			makeSelect.setAttribute("id", "petGroups");
 		for (var i=0, j=petGroups.length; i<j; i++) {
 			var makeOption = document.createElement("option");
@@ -95,7 +95,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		getCheckboxValue();
 		
 		var item			= {};
-			item.petsType	= ["Pet Type:", gebi("petsType").value];
+			item.petGroups	= ["Pet Type:", gebi("petGroups").value];
 			item.petName	= ["Pet Name:", gebi("petName").value];
 			item.petEmail	= ["Pet Email:", gebi("petEmail").value];
 			item.gender		= ["Gender:", genderValue];
@@ -202,16 +202,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		toggleControls("off");
 		
 		// populate the form fields with current localStorage values.
-		gebi("petType").value = item.petType[1];
+		gebi("petGroups").value = item.petGroups[1];
 		gebi("petName").value = item.petName[1];
 		gebi("petEmail").value = item.petEmail[1];
-		var radios = document.forms[0].gender;
+		var radios = document.forms[0].genderValue;
 		for (var i=0; i<radios.length; i++) {
-			if (radios[i].value == "Male" && item.gender[1] == "Male") {
+			if (radios[i].value == "Male" && item.genderValue[1] == "Male") {
 				radios[i].setAttribute("checked", "checked");
-			} else if (radios[i].value == "Female" && item.gender[1] == "Female") {
+			} else if (radios[i].value == "Female" && item.genderValue[1] == "Female") {
 				radios[i].setAttribute("checked", "checked");
-			} else if (radios[i].value == "Unknown" && item.gender[1] == "Unknown") {
+			} else if (radios[i].value == "Unknown" && item.genderValue[1] == "Unknown") {
 				radios[i].setAttribute("checked", "checked");
 			};
 		};
@@ -261,14 +261,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	// My Validate Function
 	function validate(e) {
 		// Define the elements we want to check
-		var getPetType = gebi("PetType");
+		var getPetGroups = gebi("petGroups");
 		var getPetName = gebi("petName");
 		var getPetEmail = gebi("petEmail");
-		var getGender = gebi("gender");
+		var getGender = gebi("genderValue");
 		
 		// Resetting Error Messages
 		errMsg.innerHTML = "";
-		getPetType.style.border = "1px solid black";
+		getPetGroups.style.border = "1px solid black";
 		getPetName.style.border = "1px solid black";
 		getPetEmail.style.border = "1px solid black";
 		getGender.style.border = "1px solid black";
@@ -277,10 +277,10 @@ window.addEventListener("DOMContentLoaded", function(){
 		var messageArray = [];
 		
 		// Pet Type Validation
-		if (getPetType.value === "--Choose A Pet Type--") {
-			var petTypeError = "Please choose a pet type.";
-			getPetType.style.border = "2px solid red";
-			messageArray.push(petTypeError);
+		if (getPetGroups.value === "--Choose A Pet Type--") {
+			var petGroupsError = "Please choose a pet type.";
+			getPetGroups.style.border = "2px solid red";
+			messageArray.push(petGroupsError);
 		};
 		
 		// Pet Name Validation
