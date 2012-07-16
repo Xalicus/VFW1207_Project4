@@ -222,14 +222,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		gebi("comments").value = item.comments[1];
 		
 		// Remove the initial listener from the input "save pet" button.
-		save.removeEventListener("click", submit);
+		saveData.removeEventListener("click", submit);
 		// Change Submit button Value to Edit Button
 		gebi("submit").value = "Edit Pet";
 		var editSubmit = gebi("submit");
 		
 		// Save the key value established in this function as a prop of the editSubmit event
 		// so we can use that value when we save the data we edited.
-		editSubmit.addEvenListener("click", validate);
+		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
 	};
 	
