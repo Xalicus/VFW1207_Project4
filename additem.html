@@ -10,7 +10,7 @@ Date: 07-14-2012
 	<head>
 		<!-- Meta tags including char set, description, keywords and robots. -->
 		<meta charset="utf-8" />
-		<meta name="description" content="Kev's Kool Pets List Mobile Web App." />
+		<meta name="description" content="Kev's KoolPetsDex Mobile Web App." />
 		<meta name="keywords" content="html5, mobile development, Full Sail University, pets" />
 		<!-- Robots allows search engines to index the page and follow the links. -->
 		<meta name="robots" content="index, follow" />
@@ -23,7 +23,7 @@ Date: 07-14-2012
 		<meta name="MobileOptimized" content="320" />
 		
 		<!-- Document title -->
-		<title>Kev's Kool Pets List</title>
+		<title>Kev's KoolPetsDex</title>
 		
 		<!-- Link CSS -->
 		<link href="css/styles.css" rel="stylesheet" type="text/css" />
@@ -39,18 +39,18 @@ Date: 07-14-2012
 		</header>
 		<!-- Main body of page -->
 		<article>
-		<p>Choose the type of kool pet you want!.</p>
+		<p>Choose the type of Kool Pet you want!.</p>
 		
 			<nav>
-			<a href="#" id="showData">Show Data</a> 
-			<a href="#" id="clearData">Clear Data</a> 
-			<a href="additem.html" id="addNew" style="display:none;">Add New Pet</a>
+			<a href="#" id="showData">Show Kool Pets</a> 
+			<a href="#" id="clearData">Release all Pets</a> 
+			<a href="additem.html" id="addNew" style="display:none;">Add New Kool Pet</a>
 			</nav>
 		
 		<form action="#" method="post" id="petForm">
 			<fieldset id="petFieldset">
 				<legend>Choose Wisely!</legend>
-				<span>* fields are required</span>
+				<span>* Fields are required</span>
 				<ul id="errors"></ul>
 				
 				<ul id="questions">
@@ -74,12 +74,12 @@ Date: 07-14-2012
 					
 					<li><label for="birthDate">Date of Birth:<input type="date" min="1900-01-01" max="2099-12-31" value="2012-07-04" id="birthDate" /></label></li>
 					
-					<li><label for="koolness">Koolness Factor:<input type="range" name="quantity" min="1" max="50" value="25" id="koolness"/></label></li>
+					<li><label for="koolness">Koolness Factor:<input type="range" name="quantity" min="1" max="100" value="50" id="koolness"/></label></li>
 					
 					<li><label for="comments">Comments:</label><textarea id="comments"></textarea></li>
 				</ul>
 			</fieldset>
-			<input type="submit" value="Submit Now" id="submit" /><br />
+			<input type="submit" value="Submit Pet Now" id="submit" /><br />
 			<input type="reset" value="Reset Page" id="reset" />
 		</form>
 		</article>

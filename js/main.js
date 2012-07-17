@@ -16,7 +16,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 
 	// My Variables for the functions
-	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Reptiles", "Birds", "Farm_Animals", "Mythical"];
+	var petGroups = ["--Choose A Pet Group--", "Dogs", "Cats", "Rodents", "Reptiles", 
+		"Birds", "Farm_Animals", "Mythical"];
 	var	genderValue;
 	var	faveValue = "No";
 	var	errMsg = gebi("errors");
@@ -83,7 +84,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var id				= Math.floor(Math.random()*1000001);
 		} else {
 			// Set the id to the existing key I'm editing so that it will save over the data.
-			// The key is the same key that's been passed along from the editSubmit even handler
+			// The key is the same key that's been passed along from the editSubmit event handler
 			// to the validate function, and then passed here, into the submit function.
 			id					= key;
 		};
@@ -105,14 +106,14 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.comments		= ["Comments:", gebi("comments").value];
 		// Save data into Local Storage: Use Stringify to convert the object to a string.
 		localStorage.setItem(id, JSON.stringify(item));
-		alert("Pet saved to the Kool Pets List!");
+		alert("Pet saved to the KoolPetsDex!");
 	};
 
 	// My getData function
 	function getData() {
 		toggleControls("on");
 		if(localStorage.length === 0) {
-			alert("There are no Pets in the Kool Pets List so default pets were added.");
+			alert("There are no Pets in the KoolPetsDex, so default Pets were added.");
 			autoFillData();
 		};
 		
@@ -134,6 +135,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var object = JSON.parse(value);
 			var makeSubList = document.createElement("ul");
 			makeLi.appendChild(makeSubList);
+			// This next line is to grab the Img that fits the category it's in.
 			getImg(object.petGroups[1], makeSubList);
 			for (var n in object) {
 				var makeSubLi = document.createElement("li");
@@ -158,7 +160,8 @@ window.addEventListener("DOMContentLoaded", function(){
 
 	// My Auto Fill Local Storage Function
 	function autoFillData() {
-		// The actual JSON OBJECT data required for this to work is coming from the json.js file, which is loaded from the html page.
+		// The actual JSON OBJECT data required for this to work is coming from the 
+		// json.js file, which is loaded from the html page.
 		// Store the JSON OBJECT into local storage.
 		for(var n in json) {
 			var id = Math.floor(Math.random()*1000001);
@@ -166,7 +169,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 	};
 
-	// My Make Item Function
+	// My Make Item Links Function
 	// Create the edit and delete links for each stored item when displayed.
 	function makeItemLinks(key, linksLi) {
 		// Add edit single item link
@@ -187,7 +190,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var deleteLink = document.createElement("a");
 		deleteLink.href = "#";
 		deleteLink.key = key;
-		var deleteText = "Delete Pet";
+		var deleteText = "Release Pet";
 		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
@@ -202,7 +205,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		// To show the form again
 		toggleControls("off");
 		
-		// populate the form fields with current localStorage values.
+		// Populate the form fields with current localStorage values.
 		gebi("petGroups").value = item.petGroups[1];
 		gebi("petName").value = item.petName[1];
 		gebi("petEmail").value = item.petEmail[1];
@@ -235,23 +238,23 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	// My Delete Item Function
 	function deleteItem() {
-		var ask = confirm("Are you sure you want to delete this Kool Pet?");
+		var ask = confirm("Are you sure you want to release this Kool Pet?");
 		if (ask) {
 			localStorage.removeItem(this.key);
-			alert("Kool Pet WAS deleted!!!");
+			alert("Kool Pet WAS Released!!!");
 			window.location.reload();
 		} else {
-			alert("Kool Pet was NOT deleted!");
+			alert("Kool Pet was NOT Released!");
 		};
 	};
 	
 	// My Clear Data Function
 	function clearDataStorage() {
 		if(localStorage.length === 0) {
-			alert("No Kool Pets in the Kool Pets List.");
+			alert("No Kool Pets in the KoolPetsDex.");
 		} else {
 			localStorage.clear();
-			alert("All Kool Pets have been set free!");
+			alert("All Kool Pets have been Released!");
 			window.location.reload();
 			return false;
 		};
@@ -275,15 +278,15 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		// Pet Type Validation
 		if (getPetGroups.value === "--Choose A Pet Group--") {
-			var petGroupsError = "Please choose a pet type.";
-			getPetGroups.style.border = "3px solid red";
+			var petGroupsError = "Please choose a Kool Pet Group!";
+			getPetGroups.style.border = "1px solid red";
 			messageArray.push(petGroupsError);
 		};
 		
 		// Pet Name Validation
 		if (getPetName.value == "") {
 			var petNameError = "Please enter a Kool Pet Name!";
-			getPetName.style.border = "3px solid red";
+			getPetName.style.border = "1px solid red";
 			messageArray.push(petNameError);
 		};
 		
@@ -291,17 +294,10 @@ window.addEventListener("DOMContentLoaded", function(){
 		var re = /^\w+([\.\-]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,3})+$/;
 		var re2 = /^([a-z0-9])([\w\.\-\+])+([a-z0-9])\@((\w)([\w\-]?)+\.)+([a-z]{2,6})$/;
 		if (!(re.exec(getPetEmail.value))) {
-			var petEmailError = "Please enter a valid email address for your pet.";
-			getPetEmail.style.border = "3px solid red";
+			var petEmailError = "Please enter an email for your Kool Pet!";
+			getPetEmail.style.border = "1px solid red";
 			messageArray.push(petEmailError);
 		};
-		
-/*		// Pet Gender Validation
-		if (getGender === "") {
-			var genderError = "Please pick a Pet Gender";
-			getGender.style.border = "2px solid red";
-			messageArray.push(genderError);
-		};*/
 		
 		// If there were errors, display them on the screen.
 		if (messageArray.length >= 1) {
@@ -319,16 +315,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		};
 	};
 	
-	// My Variables for the functions
-/*	var petGroup = ["--Choose A Pet Type--", "Dogs", "Cats", "Rodents", "Birds", "Farm Animals"],
-		genderValue,
-		faveValue = "No",
-		errMsg = gebi("errors");
-	;
-*/
-	
 	makeCats();
-	
 
 	var showData = gebi("showData");
 	showData.addEventListener("click", getData);
