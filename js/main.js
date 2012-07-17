@@ -276,14 +276,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		// Pet Type Validation
 		if (getPetGroups.value === "--Choose A Pet Group--") {
 			var petGroupsError = "Please choose a pet type.";
-			getPetGroups.style.border = "2px solid red";
+			getPetGroups.style.border = "3px solid red";
 			messageArray.push(petGroupsError);
 		};
 		
 		// Pet Name Validation
-		if (getPetName === " ") {
+		if (getPetName.value == "") {
 			var petNameError = "Please enter a Kool Pet Name!";
-			getPetName.style.border = "2px solid red";
+			getPetName.style.border = "3px solid red";
 			messageArray.push(petNameError);
 		};
 		
@@ -292,7 +292,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var re2 = /^([a-z0-9])([\w\.\-\+])+([a-z0-9])\@((\w)([\w\-]?)+\.)+([a-z]{2,6})$/;
 		if (!(re.exec(getPetEmail.value))) {
 			var petEmailError = "Please enter a valid email address for your pet.";
-			getPetEmail.style.border = "2px solid red";
+			getPetEmail.style.border = "3px solid red";
 			messageArray.push(petEmailError);
 		};
 		
